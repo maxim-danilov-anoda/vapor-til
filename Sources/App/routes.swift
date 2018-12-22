@@ -13,8 +13,7 @@ public func routes(_ router: Router) throws {
     }
 
     // Example of configuring a controller
-    let todoController = TodoController()
-    router.get("todos", use: todoController.index)
-    router.post("todos", use: todoController.create)
-    router.delete("todos", Todo.parameter, use: todoController.delete)
+    router.post(Acronym.self, at: "api", "acronyms") { req, acronym -> Future<Acronym> in
+        return acronym.save(on: req)
+    }
 }
